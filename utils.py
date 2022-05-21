@@ -17,7 +17,8 @@ def get_query(f: Any, cmd: str, value: Optional[str]) -> Iterator:
     elif cmd == "limit" and value is not None:
         return get_limit(data, int(value))
     elif cmd == "regex":
-        return filter(lambda v: re.findall(value, v), data)
+        data = str(list(data))
+        return re.findall(value, data)
     return data
 
 
